@@ -48,6 +48,14 @@ class Product extends Equatable {
       price: 2.99,
       isRecommended: true,
       isPopular: false,
+    ),const Product(
+      name: 'Soft Drink #3',
+      category: 'Soft Drink',
+      imageUrl:
+          'https://images.unsplash.com/photo-1544038626-8fcbf944c1c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDM5fHhqUFI0aGxrQkdBfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      price: 2.99,
+      isRecommended: true,
+      isPopular: false,
     ),
     const Product(
       name: 'Soft Drink #4',
@@ -77,6 +85,15 @@ class Product extends Equatable {
       isPopular: true,
     ),
     
+    const Product(
+      name: 'Water #1',
+      category: 'Water',
+      imageUrl:
+          'https://images.unsplash.com/photo-1644472371341-6f47c441b932?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDMzfHhqUFI0aGxrQkdBfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
+      price: 2.99,
+      isRecommended: false,
+      isPopular: true,
+    ),
     const Product(
       name: 'Water #1',
       category: 'Water',

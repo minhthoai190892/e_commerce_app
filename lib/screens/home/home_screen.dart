@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                   autoPlay: true,
                 ),
                 items: Category.categories
-                    .map((category) => HeroCarouselCart(category: category))
+                    .map((category) => HeroCarouselCart(category: category,))
                     .toList(),
               ),
               const SectionTitle(
@@ -47,6 +47,7 @@ class HomeScreen extends StatelessWidget {
               ),
               // //PRODUCT CARD
               // ProductCard(product: Product.products[0]),
+              //PRODUCT_CARD
               //PRODUCT CAROUSEL RECOMMENDED
               ProductCarousel(
                 products: Product.products

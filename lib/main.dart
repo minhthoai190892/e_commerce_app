@@ -1,3 +1,5 @@
+
+import 'package:e_commerce_app/blocs/cart/cart_bloc.dart';
 import 'package:e_commerce_app/blocs/wishlist/wishlist_bloc.dart';
 import 'package:e_commerce_app/config/app_route.dart';
 import 'package:e_commerce_app/config/theme.dart';
@@ -19,9 +21,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => WishlistBloc()..add(StartWishlist()),
          ),
-        // BlocProvider(
-        //   create: (context) => SubjectBloc(),
-        // ),
+        BlocProvider(
+          create: (context) => CartBloc()..add(CartStarted()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

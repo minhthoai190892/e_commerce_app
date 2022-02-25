@@ -27,7 +27,7 @@ class Product extends Equatable {
       category: 'Soft Drink',
       imageUrl:
           'https://images.unsplash.com/photo-1645268087365-953f5638f21e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8eGpQUjRobGtCR0F8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60',
-      price: 2.99,
+      price: 1.99,
       isRecommended: true,
       isPopular: false,
     ),

@@ -89,7 +89,7 @@ class ProductCard extends StatelessWidget {
                     BlocBuilder<CartBloc, CartState>(
                       builder: (context, state) {
                         if (state is CartLoading) {
-                          return Center(
+                          return const Center(
                             child: CircularProgressIndicator(),
                           );
                         }
@@ -112,7 +112,7 @@ class ProductCard extends StatelessWidget {
                             ),
                           );
                         } else {
-                          return Text("Something went wrong");
+                          return const Text("Something went wrong");
                         }
                       },
                     ),

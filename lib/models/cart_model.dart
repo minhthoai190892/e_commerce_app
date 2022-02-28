@@ -51,6 +51,7 @@ class Cart extends Equatable {
   //click product
 
   Map productQuantity(products) {
+    // ignore: prefer_collection_literals
     var quantity = Map();
     products.forEach(
       (product) {

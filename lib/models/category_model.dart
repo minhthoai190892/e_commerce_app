@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class Category extends Equatable {
@@ -11,8 +12,17 @@ class Category extends Equatable {
   // TODO: implement props
   List<Object?> get props => [name, imageUrl];
   static List<Category> categories = [
-    const Category(name: 'Soft Drink', imageUrl: 'https://picsum.photos/id/280/200/300'),
-    const Category(name: 'Smoothies', imageUrl: 'https://picsum.photos/id/1080/200/300'),
-    const Category(name: 'Water', imageUrl: 'https://picsum.photos/id/225/200/300'),
+    const Category(
+        name: 'Soft Drink', imageUrl: 'https://picsum.photos/id/280/200/300'),
+    const Category(
+        name: 'Smoothies', imageUrl: 'https://picsum.photos/id/1080/200/300'),
+    const Category(
+        name: 'Water', imageUrl: 'https://picsum.photos/id/225/200/300'),
   ];
+  //fireStore
+  static Category fromSnapshot(DocumentSnapshot snap) {
+    Category category =
+        Category(name: snap['name'], imageUrl: snap['imageUrl']);
+    return category;
+  }
 }

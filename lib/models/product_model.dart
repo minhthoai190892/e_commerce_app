@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class Product extends Equatable {
@@ -15,6 +16,17 @@ class Product extends Equatable {
       required this.price,
       required this.isRecommended,
       required this.isPopular});
+  //FireStore
+  static Product fromProductSnapshot(DocumentSnapshot snap) {
+    Product product = Product(
+        name: snap['name'],
+        category: snap['category'],
+        imageUrl: snap['imageUrl'],
+        price: snap['price'],
+        isRecommended: snap['isRecommended'],
+        isPopular: snap['isPopular']);
+    return product;
+  }
 
   @override
   // ignore: todo
@@ -48,7 +60,8 @@ class Product extends Equatable {
       price: 2.99,
       isRecommended: true,
       isPopular: false,
-    ),const Product(
+    ),
+    const Product(
       name: 'Soft Drink #3',
       category: 'Soft Drink',
       imageUrl:
@@ -84,7 +97,6 @@ class Product extends Equatable {
       isRecommended: false,
       isPopular: true,
     ),
-    
     const Product(
       name: 'Water #1',
       category: 'Water',

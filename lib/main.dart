@@ -3,7 +3,7 @@ import 'package:e_commerce_app/blocs/cart/cart_bloc.dart';
 import 'package:e_commerce_app/blocs/wishlist/wishlist_bloc.dart';
 import 'package:e_commerce_app/config/app_route.dart';
 import 'package:e_commerce_app/config/theme.dart';
-import 'package:e_commerce_app/screens/home/home_screen.dart';
+import 'package:e_commerce_app/screens/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         //GỌI HÀM onGenerateRoute TỪ onGenerateRoute
         onGenerateRoute: AppRouter.onGenerateRoute,
         //TRẠNG THÁI BAN ĐẦU
-        initialRoute: HomeScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         // home: const HomeScreen(),
       ),
     );

@@ -12,6 +12,8 @@ class AppRouter {
         return HomeScreen.route();
       case '/cart':
         return CartScreen.route();
+        case '/splash':
+        return SplashScreen.route();
       case '/catalog':
         return CatalogScreen.route(category: settings.arguments as Category);
       case '/person':

@@ -4,8 +4,7 @@ import 'package:equatable/equatable.dart';
 class Cart extends Equatable {
   final List<Product> products;
 
-
-  const Cart({this.products= const <Product>[]});
+  const Cart({this.products = const <Product>[]});
   //tính tổng giỏ hàng
   double get subtotal =>
       products.fold(0, (total, current) => total + current.price);
@@ -48,4 +47,20 @@ class Cart extends Equatable {
   // ignore: todo
   // TODO: implement props
   List<Object?> get props => [products];
+
+  //click product
+
+  Map productQuantity(products) {
+    var quantity = Map();
+    products.forEach(
+      (product) {
+        if (!quantity.containsKey(product)) {
+          quantity[product] = 1;
+        } else {
+          quantity[product] += 1;
+        }
+      },
+    );
+    return quantity;
+  }
 }

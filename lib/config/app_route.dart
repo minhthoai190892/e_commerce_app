@@ -12,16 +12,18 @@ class AppRouter {
         return HomeScreen.route();
       case '/cart':
         return CartScreen.route();
-        case '/splash':
+      case '/splash':
         return SplashScreen.route();
       case '/catalog':
         return CatalogScreen.route(category: settings.arguments as Category);
       case '/person':
         return PersonScreen.route();
-        case '/product':
+      case '/product':
         return ProductScreen.route(product: settings.arguments as Product);
-        case '/wishlist':
+      case '/wishlist':
         return WishlistScreen.route();
+      case '/checkout':
+        return CheckoutScreen.route();
       default:
         return _errorRoute();
     }

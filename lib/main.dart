@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         //GỌI HÀM onGenerateRoute TỪ onGenerateRoute
         onGenerateRoute: AppRouter.onGenerateRoute,
         //TRẠNG THÁI BAN ĐẦU
-        initialRoute: SplashScreen.routeName,
+        initialRoute: CheckoutScreen.routeName,
         // home: const HomeScreen(),
       ),
     );

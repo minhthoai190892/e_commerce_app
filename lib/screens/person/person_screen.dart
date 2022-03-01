@@ -19,7 +19,7 @@ class PersonScreen extends StatelessWidget {
       appBar: CustomAppBar(
         title: 'Person',
       ),
-      bottomNavigationBar: CustomNavBar(),
+      bottomNavigationBar: CustomNavBar(screen: routeName),
     );
   }
 }

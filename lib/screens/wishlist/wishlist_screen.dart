@@ -50,7 +50,7 @@ class WishlistScreen extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: const CustomNavBar(),
+      bottomNavigationBar: const CustomNavBar(screen: routeName),
     );
   }
 }

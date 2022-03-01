@@ -79,94 +79,7 @@ class CartScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      const Divider(
-                        thickness: 2,
-                      ),
-                      //TOTAL
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 10),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "SUBTOTAL:",
-                                  style: Theme.of(context).textTheme.headline5,
-                                ),
-                                Text(
-                                  "\$${state.cart.subtotalString}",
-                                  style: Theme.of(context).textTheme.headline5,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "DELIVERY:",
-                                  style: Theme.of(context).textTheme.headline5,
-                                ),
-                                Text(
-                                  "\$${state.cart.deliveryFreeString}",
-                                  style: Theme.of(context).textTheme.headline5,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Stack(
-                        children: [
-                          Container(
-                            height: 60,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: Colors.black.withAlpha(50),
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.all(5),
-                            height: 50,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: const BoxDecoration(
-                              color: Colors.black,
-                            ),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 30),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "SUBTOTAL:",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline5!
-                                        .copyWith(color: Colors.white),
-                                  ),
-                                  Text(
-                                    "\$${state.cart.totalString}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline5!
-                                        .copyWith(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
+                  const OrderSummary(),
                 ],
               ),
             );
@@ -182,7 +95,9 @@ class CartScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.white),
-              onPressed: () {},
+              onPressed: () {
+                 Navigator.pushNamed(context, '/checkout');
+              },
               child: Text(
                 "GO TO CHECKOUT",
                 style: Theme.of(context).textTheme.headline3,

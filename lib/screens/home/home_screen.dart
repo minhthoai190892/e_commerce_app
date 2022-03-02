@@ -2,13 +2,14 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_app/blocs/category/category_bloc.dart';
+import 'package:e_commerce_app/blocs/product/product_bloc.dart';
 
 
 import 'package:e_commerce_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/bloc/product_bloc.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

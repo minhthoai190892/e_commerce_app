@@ -1,6 +1,7 @@
 
 
 import 'package:e_commerce_app/blocs/cart/cart_bloc.dart';
+import 'package:e_commerce_app/blocs/checkout/checkout_bloc.dart';
 import 'package:e_commerce_app/blocs/wishlist/wishlist_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,7 @@ class CustomNavBar extends StatelessWidget {
     this.product,
     required this.screen,
   }) : super(key: key);
-  // ignore: body_might_complete_normally_nullable
+  // ignore: body_might_complete_normally_nullable, non_constant_identifier_names
   List<Widget>? _selectNavBar(context, screen) {
     switch (screen) {
       case '/':
@@ -139,25 +140,37 @@ class CustomNavBar extends StatelessWidget {
       ),
     ];
   }
-  
+
   List<Widget> _buildOrderNowNabar(context) {
     return [
-      ElevatedButton(
-        onPressed: () {
-         
+      BlocBuilder<CheckoutBloc, CheckoutState>(
+        builder: (context, state) {
+          if (state is CheckoutLoading) {
+            return const CircularProgressIndicator();
+          }
+          if (state is CheckoutLoaded) {
+            return ElevatedButton(
+              onPressed: () {
+                context
+                    .read<CheckoutBloc>()
+                    .add(ConfirmCheckout(checkout: state.checkout));
+              },
+              child: Text(
+                "Orther Now",
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                shape: const RoundedRectangleBorder(),
+              ),
+            );
+          } else {
+            return const Text("Something went wrong");
+          }
         },
-        child: Text(
-          "Orther Now",
-          style: Theme.of(context).textTheme.headline3,
-        ),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.white,
-          shape: const RoundedRectangleBorder(),
-        ),
       ),
     ];
   }
-
 
   @override
   Widget build(BuildContext context) {

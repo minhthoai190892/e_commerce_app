@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/product_model.dart';
 
-//CHỈ LẤY 1 ITE
+
 class ProductCard extends StatelessWidget {
   final Product product;
   final double widthFactor;

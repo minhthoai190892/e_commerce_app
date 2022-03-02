@@ -1,11 +1,13 @@
-import 'package:e_commerce_app/blocs/bloc/product_bloc.dart';
 import 'package:e_commerce_app/blocs/cart/cart_bloc.dart';
 import 'package:e_commerce_app/blocs/category/category_bloc.dart';
+import 'package:e_commerce_app/blocs/checkout/checkout_bloc.dart';
+import 'package:e_commerce_app/blocs/product/product_bloc.dart';
 
 import 'package:e_commerce_app/blocs/wishlist/wishlist_bloc.dart';
 import 'package:e_commerce_app/config/app_route.dart';
 import 'package:e_commerce_app/config/theme.dart';
 import 'package:e_commerce_app/repositories/category/category_repository.dart';
+import 'package:e_commerce_app/repositories/checkout/checkout_repository.dart';
 import 'package:e_commerce_app/repositories/product/product_repository.dart';
 import 'package:e_commerce_app/screens/screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,11 +33,20 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CartBloc()..add(CartStarted()),
         ),
-         BlocProvider(
-          create: (context) => CategoryBloc(categoryRepository: CategoryRepository())..add(LoadCategories()),
+        BlocProvider(
+          create: (context) =>
+              CategoryBloc(categoryRepository: CategoryRepository())
+                ..add(LoadCategories()),
         ),
         BlocProvider(
-          create: (context) =>ProductBloc(productRepository: ProductRepository())..add(LoadProducts()),
+          create: (context) =>
+              ProductBloc(productRepository: ProductRepository())
+                ..add(LoadProducts()),
+        ),
+        BlocProvider(
+          create: (context) => CheckoutBloc(
+              cartBloc: context.read<CartBloc>(),
+              checkoutRepository: CheckoutRepository()),
         ),
       ],
       child: MaterialApp(
@@ -45,7 +56,7 @@ class MyApp extends StatelessWidget {
         //GỌI HÀM onGenerateRoute TỪ onGenerateRoute
         onGenerateRoute: AppRouter.onGenerateRoute,
         //TRẠNG THÁI BAN ĐẦU
-        initialRoute: CheckoutScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         // home: const HomeScreen(),
       ),
     );

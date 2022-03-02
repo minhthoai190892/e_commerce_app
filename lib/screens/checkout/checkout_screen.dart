@@ -1,22 +1,23 @@
+import 'package:e_commerce_app/blocs/checkout/checkout_bloc.dart';
 import 'package:e_commerce_app/widgets/custom_appbar.dart';
 import 'package:e_commerce_app/widgets/custom_nabar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/order_summary.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController countryController = TextEditingController();
-  final TextEditingController zipCodeController = TextEditingController();
+  // final TextEditingController emailController = TextEditingController();
+  // final TextEditingController nameController = TextEditingController();
+  // final TextEditingController addressController = TextEditingController();
+  // final TextEditingController cityController = TextEditingController();
+  // final TextEditingController countryController = TextEditingController();
+  // final TextEditingController zipCodeController = TextEditingController();
 
   Padding _buildTextFormField(
-    TextEditingController controller,
+    Function(String)? onChange,
     BuildContext context,
     String labelText,
-    
   ) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -31,9 +32,8 @@ class CheckoutScreen extends StatelessWidget {
           ),
           Expanded(
             child: TextFormField(
-              controller: controller,
+              onChanged: onChange,
               decoration: const InputDecoration(
-                
                   isDense: true,
                   contentPadding: EdgeInsets.only(left: 10),
                   focusedBorder: UnderlineInputBorder(
@@ -45,11 +45,11 @@ class CheckoutScreen extends StatelessWidget {
     );
   }
 
-  CheckoutScreen({Key? key}) : super(key: key);
+  const CheckoutScreen({Key? key}) : super(key: key);
   static const String routeName = '/checkout';
   static Route route() {
     return MaterialPageRoute(
-        builder: (context) => CheckoutScreen(),
+        builder: (context) => const CheckoutScreen(),
         settings: const RouteSettings(name: routeName));
   }
 
@@ -58,39 +58,72 @@ class CheckoutScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(title: "Checkout"),
       bottomNavigationBar: const CustomNavBar(screen: routeName),
-      body: ListView(
-        children: [
-          Padding(
+      body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "CUSTOMER INFORMATION",
-              style: Theme.of(context).textTheme.headline2,
-            ),
-            _buildTextFormField(emailController, context, 'Email',),
-            _buildTextFormField(nameController, context, 'Full Name'),
-           
-          
-            Text(
-              "DELIVERY INFORMATION",
-              style: Theme.of(context).textTheme.headline2,
-            ),
-            _buildTextFormField(addressController, context, 'Address'),
-            _buildTextFormField(cityController, context, 'City'),
-            _buildTextFormField(countryController, context, 'Country'),
-            _buildTextFormField(zipCodeController, context, 'Zip Code'),
-            Text(
-              "ORDER SUMMARY",
-              style: Theme.of(context).textTheme.headline2,
-            ),
-            const OrderSummary(),
-          ],
+        child: BlocBuilder<CheckoutBloc, CheckoutState>(
+          builder: (context, state) {
+            if (state is CheckoutLoading) {
+              return const CircularProgressIndicator();
+            }
+            if (state is CheckoutLoaded) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "CUSTOMER INFORMATION",
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  _buildTextFormField(
+                    (value) {
+                      context
+                          .read<CheckoutBloc>()
+                          .add(UpdateCheckout(email: value));
+                    },
+                    context,
+                    'Email',
+                  ),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(fullName: value));
+                  }, context, 'Full Name'),
+                  Text(
+                    "DELIVERY INFORMATION",
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(address: value));
+                  }, context, 'Address'),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(city: value));
+                  }, context, 'City'),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(country: value));
+                  }, context, 'Country'),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(zipCode: value));
+                  }, context, 'Zip Code'),
+                  Text(
+                    "ORDER SUMMARY",
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  const OrderSummary(),
+                ],
+              );
+            } else {
+              return const Text("Something went wrong");
+            }
+          },
         ),
-      ),
-        ],
       ),
     );
   }
